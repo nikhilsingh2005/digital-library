@@ -4,20 +4,25 @@
 A Spring Boot-based application that enables librarians to add, update, search, and delete books with MySQL integration.
 
 ## Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/nikhilsingh2005/digital-library.git
-   cd digital-library
 
-
+### 1. Clone the Repository
+Open your terminal and run:
+```bash
+git clone https://github.com/nikhilsingh2005/digital-library.git
+cd digital-library
 2. Create the MySQL Database
 Open your MySQL client (such as MySQL Workbench or the command line) and run:
 
+sql
+Copy
+Edit
 CREATE DATABASE digitallibrarydb;
-
 3. Configure the Database Connection
 Open the file src/main/resources/application.properties and update it with your MySQL credentials:
 
+properties
+Copy
+Edit
 spring.datasource.url=jdbc:mysql://localhost:3306/digitallibrarydb?useSSL=false&serverTimezone=UTC
 spring.datasource.username=yourUsername
 spring.datasource.password=yourPassword
@@ -25,31 +30,37 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
-
-
-Build & Run Instructions :
-
+Build & Run Instructions
 1. Build the Project
 From the root of your project, run:
 
+bash
+Copy
+Edit
 mvn clean install
 2. Run the Application
 Start your Spring Boot application with:
 
+bash
+Copy
+Edit
 mvn spring-boot:run
 Once running, the API endpoints will be accessible at:
+
+bash
+Copy
+Edit
 http://localhost:8080/api/books
-
-API Documentation :
+API Documentation
 Endpoints
-
-Add a Book :
+Add a Book
 Endpoint: POST /api/books
-
 Description: Adds a new book record.
-
 Request Body Example:
 
+json
+Copy
+Edit
 {
   "bookId": "B001",
   "title": "The Great Gatsby",
@@ -57,29 +68,26 @@ Request Body Example:
   "genre": "Classic",
   "availabilityStatus": "AVAILABLE"
 }
-
-View All Books :
+View All Books
 Endpoint: GET /api/books
-
 Description: Retrieves a list of all books.
 
-Get Book by ID :
+Get Book by ID
 Endpoint: GET /api/books/{bookId}
-
 Description: Retrieves details for a specific book by its ID.
 
-Search Books by Title :
+Search Books by Title
 Endpoint: GET /api/books/search?title={title}
-
 Description: Searches for books with titles containing the specified text.
 
-Update Book Details :
+Update Book Details
 Endpoint: PUT /api/books/{bookId}
-
 Description: Updates the details of an existing book.
-
 Request Body Example:
 
+json
+Copy
+Edit
 {
   "bookId": "B001",
   "title": "The Great Gatsby (Updated)",
@@ -87,10 +95,8 @@ Request Body Example:
   "genre": "Classic",
   "availabilityStatus": "CHECKED_OUT"
 }
-
-Delete a Book Record :
+Delete a Book Record
 Endpoint: DELETE /api/books/{bookId}
-
 Description: Deletes a book from the catalog.
 
 Shutdown the Application
@@ -98,13 +104,22 @@ Endpoint: POST /actuator/shutdown
 Description: Gracefully shuts down the application.
 Configuration:
 Ensure that the following properties are set in your application.properties file:
+
+properties
+Copy
+Edit
 management.endpoint.shutdown.enabled=true
 management.endpoints.web.exposure.include=shutdown
 Usage:
-Send a POST request to http://localhost:8080/actuator/shutdown to gracefully exit the application.
+Send a POST request to:
+
+bash
+Copy
+Edit
+http://localhost:8080/actuator/shutdown
+to gracefully exit the application.
 
 Future Improvements & Reflections
-
 Challenges Faced:
 
 Configuring MySQL connection and ensuring proper database creation.
