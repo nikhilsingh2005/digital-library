@@ -1,13 +1,21 @@
-# Use the official OpenJDK 21 image
-FROM openjdk:21-jdk-slim
-
-# Set the working directory inside the container
+# Use Maven to build the application
+FROM maven:3.8.7-openjdk-21 AS builder
 WORKDIR /app
 
-# Copy the built JAR file into the container
-COPY ./target/*.jar app.jar
+# Copy the project files
+COPY . .
 
-# Expose the application's port (Spring Boot default is 8080)
+# Build the application (creates target/*.jar)
+RUN ./mvnw clean package -DskipTests
+
+# Use a minimal OpenJDK image for the final container
+FROM openjdk:21-jdk-slim
+WORKDIR /app
+
+# Copy the built JAR from the builder stage
+COPY --from=builder /app/target/*.jar app.jar
+
+# Expose the application's port
 EXPOSE 8080
 
 # Run the application
