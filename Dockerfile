@@ -1,5 +1,5 @@
-# Use Maven to build the application
-FROM maven:3.8.7-openjdk-21 AS builder
+# Use a valid Maven image with JDK 21
+FROM maven:3.9.6-eclipse-temurin-21 AS builder
 WORKDIR /app
 
 # Copy the project files
