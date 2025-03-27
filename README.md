@@ -95,7 +95,7 @@ http://localhost:8080/api/books
 ### Shutdown the Application
 - Endpoint: POST /actuator/shutdown
 - Description: Gracefully shuts down the application.
-Configuration:
+  Configuration:
 - Ensure that the following properties are set in your application.properties file:
 
 ```sh
