@@ -5,6 +5,7 @@ import com.ajackus.digital_library.model.Book;
 import com.ajackus.digital_library.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class BookController {
     @PostMapping
     public ResponseEntity<Book> addBook(@Valid @RequestBody BookDTO bookDTO) {
         Book savedBook = bookService.addBook(bookDTO);
-        return ResponseEntity.ok(savedBook);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
     }
 
     // View all books
