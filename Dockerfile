@@ -5,6 +5,9 @@ WORKDIR /app
 # Copy the project files
 COPY . .
 
+# Grant execute permission to mvnw (fixes permission issue)
+RUN chmod +x mvnw
+
 # Build the application (creates target/*.jar)
 RUN ./mvnw clean package -DskipTests
 
