@@ -93,6 +93,16 @@ Endpoint: DELETE /api/books/{bookId}
 
 Description: Deletes a book from the catalog.
 
+Shutdown the Application
+Endpoint: POST /actuator/shutdown
+Description: Gracefully shuts down the application.
+Configuration:
+Ensure that the following properties are set in your application.properties file:
+management.endpoint.shutdown.enabled=true
+management.endpoints.web.exposure.include=shutdown
+Usage:
+Send a POST request to http://localhost:8080/actuator/shutdown to gracefully exit the application.
+
 Future Improvements & Reflections
 
 Challenges Faced:
